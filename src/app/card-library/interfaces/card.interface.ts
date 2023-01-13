@@ -1,0 +1,29 @@
+export interface Card {
+  id: string;
+  name: string;
+  manaCost: string;
+  cmc: number;
+  colors: Array<string>;
+  colorIdentity: Array<string>;
+  type: string;
+  types: Array<string>;
+  subtypes: Array<string>;
+  flavor: string;
+  rarity: string;
+  set: string;
+  setName: string;
+  text: string;
+  artist: string;
+  number: string;
+  power: string;
+  toughness: string;
+  layout: string;
+  multiverseid: string;
+  imageUrl: string;
+  variations: Array<string>;
+  foreignNames: Array<any>;
+  printings: Array<string>;
+  originalText: string;
+  originalType: string;
+  legalities: Array<any>;
+}

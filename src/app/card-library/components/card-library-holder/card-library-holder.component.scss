@@ -1,0 +1,56 @@
+app-card-library-holder {
+  .loading-holder {
+    width: 100%;
+    height: 100%;
+    background: rgba($card-background, 0.3);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 3;
+  }
+
+  .loading-details {
+    width: 150px;
+    margin: 220px auto;
+  }
+
+  .logo-holder {
+    img {
+      width: $main-logo-width;
+      height: auto;
+    }
+  }
+
+  .card-color-filter {
+    user-select: none;
+
+    .filter-label {
+      position: relative;
+      top: -5px;
+      margin-right: 10px;
+    }
+
+    .icon-list-holder {
+      position: relative;
+      top: 8px;
+    }
+  }
+
+  .product-grid-item {
+    display: flex;
+    padding: 1rem;
+    width: 100%;
+    align-self: stretch;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .product-grid-item-content {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .p-dataview .p-dataview-content {
+    padding: 0;
+  }
+}

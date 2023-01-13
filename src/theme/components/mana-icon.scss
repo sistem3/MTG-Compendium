@@ -1,0 +1,109 @@
+.mana-icon-holder {
+  width: $mana-icon-size;
+  height: $mana-icon-size;
+  display: inline-block;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid rgba($main-white, 0.3);
+  margin-right: 5px;
+  box-sizing: border-box;
+
+  .mana-icon {
+    display: inline-block;
+    background-image: url('/assets/images/mana.svg');
+  }
+
+  &.nav {
+    &.is-active .mana-icon {
+      opacity: 1;
+    }
+
+    .mana-icon {
+      width: $mana-icon-size;
+      height: $mana-icon-size;
+      background-size: $full-sized-icon-background-size;
+      cursor: pointer;
+      opacity: 0.3;
+
+      &.white {
+        background-position: -138.5px $main-colour-row-depth;
+      }
+
+      &.blue {
+        background-position: -173.3px $main-colour-row-depth;
+      }
+
+      &.red {
+        background-position: -242.7px $main-colour-row-depth;
+      }
+
+      &.green {
+        background-position: -277.3px $main-colour-row-depth;
+      }
+
+      &.black {
+        background-position: -208px $main-colour-row-depth;
+      }
+    }
+  }
+
+  &.small {
+    width: $mana-icon-small-size;
+    height: $mana-icon-small-size;
+
+    .mana-icon {
+      width: $mana-icon-small-size;
+      height: $mana-icon-small-size;
+      background-size: $small-sized-icon-background-size;
+
+      &.white {
+        background-position: -90.5px $small-colour-row-depth;
+      }
+
+      &.blue {
+        background-position: -113px $small-colour-row-depth;
+      }
+
+      &.red {
+        background-position: -157.7px $small-colour-row-depth;
+      }
+
+      &.green {
+        background-position: -180.3px $small-colour-row-depth;
+      }
+
+      &.black {
+        background-position: -135px $small-colour-row-depth;
+      }
+
+      &.icon-1 {
+        background-position: -22.5px $first-number-row-depth;
+      }
+
+      &.icon-2 {
+        background-position: -45.5px $first-number-row-depth;
+      }
+
+      &.icon-3 {
+        background-position: -68px $first-number-row-depth;
+      }
+
+      &.icon-4 {
+        background-position: -90.5px $first-number-row-depth;
+      }
+
+      &.icon-5 {
+        background-position: -112.7px $first-number-row-depth;
+      }
+
+      &.icon-6 {
+        background-position: -135.7px $first-number-row-depth;
+      }
+
+      &.icon-X {
+        background-position: -68px $small-colour-row-depth;
+      }
+    }
+  }
+}
+

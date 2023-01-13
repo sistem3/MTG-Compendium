@@ -1,0 +1,42 @@
+<div class="product-grid-item card">
+  <div class="product-grid-item-content" (click)="emitFullDetails(cardDetails)">
+    <div *ngIf="cardDetails.imageUrl" class="card-preview">
+      <img
+        [src]="cardDetails.imageUrl"
+        [alt]="cardDetails.name"
+        [title]="cardDetails.name" />
+    </div>
+    <div *ngIf="!cardDetails.imageUrl" class="card-placeholder">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/en/a/aa/Magic_the_gathering-card_back.jpg"
+        alt="MTG Blank Card" />
+    </div>
+    <section class="card-details" [class.no-card-image]="!cardDetails.imageUrl">
+      <h3 class="text-lg">{{cardDetails.name}}</h3>
+      <p *ngIf="cardDetails.manaCost" class="mana-details">
+        <span class="cost-label">Cost:&nbsp;</span>
+        <span [innerHTML]="cardDetails.manaCost | manaCost"></span>
+      </p>
+      <p class="type-details">{{cardDetails.type}}</p>
+      <p>
+        <small>
+          {{cardDetails.text}}
+          <em *ngIf="cardDetails.flavor"> - {{cardDetails.flavor}}</em>
+        </small>
+      </p>
+      <p *ngIf="cardDetails.types.includes('Creature')">
+        <span class="power-toughness-holder">
+          <span title="Power">
+            <i class="material-symbols-outlined">swords</i>
+            <span class="details">&nbsp;{{cardDetails.power}}</span>
+          </span>
+          <span>&nbsp;|&nbsp;</span>
+          <span title="Toughness">
+            <i class="material-symbols-outlined">shield</i>
+            <span class="details">&nbsp;{{cardDetails.toughness}}</span>
+          </span>
+        </span>
+      </p>
+    </section>
+  </div>
+</div>

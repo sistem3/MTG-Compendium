@@ -1,0 +1,25 @@
+.card-placeholder {
+  width: $card-width;
+  height: $card-height;
+  border-radius: $card-border-radius;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid $light-grey;
+  background: $card-background;
+  display: flex;
+  padding: 2rem;
+  padding-top: 120px;
+  cursor: pointer;
+
+  img {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  span {
+    z-index: 2;
+  }
+}
