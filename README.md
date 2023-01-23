@@ -1,7 +1,7 @@
 # Magic the Gathering - Compendium
 
 ## Intro
-The Magic the Gathering - Compendium was designed as a simple and easy way to search the [Magic the Gathering API](https://docs.magicthegathering.io/), please note this project is a work in progress. Currently it has mana colour filtering but next steps will be to add further filtering capabilities as well as a collection manager and deck builder system.
+Magic the Gathering - Compendium was designed as a simple and easy way to search the [Magic the Gathering API](https://docs.magicthegathering.io/) and organise decks and collections, please note this project is a work in progress. Currently it has mana colour filtering but next steps will be to add further filtering capabilities as well as a collection manager and deck builder system.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.7.
 
