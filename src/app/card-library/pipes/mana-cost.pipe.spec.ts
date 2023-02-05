@@ -59,6 +59,17 @@ describe('ManaCostPipe', () => {
     expect(monoRedTest.includes('mono-red')).toBe(true);
     const monoGreenTest: any = pipe.transform('{2/G}', 'cost');
     expect(monoGreenTest.includes('mono-green')).toBe(true);
+    // Phyrexian Check
+    const phyrexianWhiteTest: any = pipe.transform('{W/P}', 'cost');
+    expect(phyrexianWhiteTest.includes('phyrexian-white')).toBe(true);
+    const phyrexianBlueTest: any = pipe.transform('{U/P}', 'cost');
+    expect(phyrexianBlueTest.includes('phyrexian-blue')).toBe(true);
+    const phyrexianBlackTest: any = pipe.transform('{B/P}', 'cost');
+    expect(phyrexianBlackTest.includes('phyrexian-black')).toBe(true);
+    const phyrexianRedTest: any = pipe.transform('{R/P}', 'cost');
+    expect(phyrexianRedTest.includes('phyrexian-red')).toBe(true);
+    const phyrexianGreenTest: any = pipe.transform('{G/P}', 'cost');
+    expect(phyrexianGreenTest.includes('phyrexian-green')).toBe(true);
     // Empty Check
     const emptyTest: any = pipe.transform('', 'inline');
     expect(emptyTest).toBe('');

@@ -135,6 +135,26 @@
       &.mono-green {
         background-position: -90px $mana-icon-small-mono-colour-row-depth;
       }
+      // Phyrexian Colours
+      &.phyrexian-white {
+        background-position: -113px $mana-icon-small-mono-colour-row-depth;
+      }
+
+      &.phyrexian-blue {
+        background-position: -135px $mana-icon-small-mono-colour-row-depth;
+      }
+
+      &.phyrexian-black {
+        background-position: -158px $mana-icon-small-mono-colour-row-depth;
+      }
+
+      &.phyrexian-red {
+        background-position: -180px $mana-icon-small-mono-colour-row-depth;
+      }
+
+      &.phyrexian-green {
+        background-position: -203px $mana-icon-small-mono-colour-row-depth;
+      }
       // Numbers (0-20)
       &.icon-0 {
         background-position: 0 $mana-icon-small-first-number-row-depth;
@@ -332,6 +352,26 @@
 
       &.mono-green {
         background-position: -59px $mana-icon-extra-small-mono-colour-row-depth;
+      }
+      // Phyrexian Colours
+      &.phyrexian-white {
+        background-position: -74px $mana-icon-extra-small-mono-colour-row-depth;
+      }
+
+      &.phyrexian-blue {
+        background-position: -89px $mana-icon-extra-small-mono-colour-row-depth;
+      }
+
+      &.phyrexian-black {
+        background-position: -103px $mana-icon-extra-small-mono-colour-row-depth;
+      }
+
+      &.phyrexian-red {
+        background-position: -118px $mana-icon-extra-small-mono-colour-row-depth;
+      }
+
+      &.phyrexian-green {
+        background-position: -133px $mana-icon-extra-small-mono-colour-row-depth;
       }
       // Numbers (0-20)
       &.icon-0 {

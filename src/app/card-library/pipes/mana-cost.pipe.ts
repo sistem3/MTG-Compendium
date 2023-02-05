@@ -32,6 +32,7 @@ export class ManaCostPipe implements PipeTransform {
   getManaTemplate(item: string, spanOpener: string, returnedString: string) {
     let iconTemplate;
     switch (item) {
+      // Colours
       case 'W':
         iconTemplate = '<span class="mana-icon white"></span></span>';
         break;
@@ -47,6 +48,7 @@ export class ManaCostPipe implements PipeTransform {
       case 'B':
         iconTemplate = '<span class="mana-icon black"></span></span>';
         break;
+      // Mixed Colours
       case 'W/U':
         iconTemplate = '<span class="mana-icon white-blue"></span></span>';
         break;
@@ -77,6 +79,7 @@ export class ManaCostPipe implements PipeTransform {
       case 'G/B':
         iconTemplate = '<span class="mana-icon green-blue"></span></span>';
         break;
+      // Mono Colours
       case '2/W':
         iconTemplate = '<span class="mana-icon mono-white"></span></span>';
         break;
@@ -92,6 +95,23 @@ export class ManaCostPipe implements PipeTransform {
       case '2/G':
         iconTemplate = '<span class="mana-icon mono-green"></span></span>';
         break;
+      // Phyrexian Colours
+      case 'W/P':
+        iconTemplate = '<span class="mana-icon phyrexian-white"></span></span>';
+        break;
+      case 'U/P':
+        iconTemplate = '<span class="mana-icon phyrexian-blue"></span></span>';
+        break;
+      case 'B/P':
+        iconTemplate = '<span class="mana-icon phyrexian-black"></span></span>';
+        break;
+      case 'R/P':
+        iconTemplate = '<span class="mana-icon phyrexian-red"></span></span>';
+        break;
+      case 'G/P':
+        iconTemplate = '<span class="mana-icon phyrexian-green"></span></span>';
+        break;
+      // Default (for Icons)
       default:
         iconTemplate = '<span class="mana-icon icon-' + item + '"></span></span>';
         break;
