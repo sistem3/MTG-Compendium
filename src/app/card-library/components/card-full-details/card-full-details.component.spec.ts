@@ -3,8 +3,6 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { CardFullDetailsComponent } from './card-full-details.component';
 
-import { ManaInlinePipe } from '../../pipes/mana-inline.pipe';
-
 describe('CardFullDetailsComponent', () => {
   let component: CardFullDetailsComponent;
   let fixture: ComponentFixture<CardFullDetailsComponent>;
@@ -12,7 +10,7 @@ describe('CardFullDetailsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ HttpClientTestingModule ],
-      declarations: [ CardFullDetailsComponent, ManaInlinePipe ]
+      declarations: [ CardFullDetailsComponent ]
     })
     .compileComponents();
 

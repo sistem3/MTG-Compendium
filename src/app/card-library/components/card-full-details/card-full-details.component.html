@@ -3,13 +3,13 @@
     <h1 class="text-2xl">{{cardDetails.name}}</h1>
     <p *ngIf="cardDetails.manaCost">
       <span class="cost-label"><strong>Cost:&nbsp;</strong></span>
-      <span [innerHTML]="cardDetails.manaCost | manaCost"></span>
+      <span [innerHTML]="cardDetails.manaCost | manaCost:'cost'"></span>
     </p>
     <p>
       <span *ngIf="cardDetails.originalText && !cardDetails.text">{{cardDetails.originalText}}</span>
       <span
         *ngIf="cardDetails.text"
-        [innerHTML]="cardDetails.text | manaInline"></span>
+        [innerHTML]="cardDetails.text | manaCost:'inline'"></span>
       &nbsp;<em *ngIf="cardDetails.flavor">{{cardDetails.flavor}}</em>
     </p>
     <p>

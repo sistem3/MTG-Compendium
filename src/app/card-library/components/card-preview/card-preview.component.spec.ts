@@ -5,8 +5,6 @@ import { CardService } from '../../services/card.service';
 
 import { CardPreviewComponent } from './card-preview.component';
 
-import { ManaInlinePipe } from '../../pipes/mana-inline.pipe';
-
 describe('CardPreviewComponent', () => {
   let component: CardPreviewComponent;
   let fixture: ComponentFixture<CardPreviewComponent>;
@@ -15,7 +13,7 @@ describe('CardPreviewComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ HttpClientTestingModule ],
-      declarations: [ CardPreviewComponent, ManaInlinePipe ]
+      declarations: [ CardPreviewComponent ]
     })
     .compileComponents();
 
