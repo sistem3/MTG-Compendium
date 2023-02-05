@@ -15,12 +15,12 @@
       <h3 class="text-lg">{{cardDetails.name}}</h3>
       <p *ngIf="cardDetails.manaCost" class="mana-details">
         <span class="cost-label">Cost:&nbsp;</span>
-        <span [innerHTML]="cardDetails.manaCost | manaCost"></span>
+        <span [innerHTML]="cardDetails.manaCost | manaCost: 'cost'"></span>
       </p>
       <p class="type-details">{{cardDetails.type}}</p>
       <p>
-        <small>
-          {{cardDetails.text}}
+        <small *ngIf="cardDetails.text">
+          <span [innerHTML]="cardDetails.text | manaCost:'inline'"></span>
           <em *ngIf="cardDetails.flavor"> - {{cardDetails.flavor}}</em>
         </small>
       </p>
