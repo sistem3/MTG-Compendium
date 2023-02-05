@@ -48,6 +48,17 @@ describe('ManaCostPipe', () => {
     expect(greenWhiteTest.includes('green-white')).toBe(true);
     const greenBlueTest: any = pipe.transform('{G/B}', 'cost');
     expect(greenBlueTest.includes('green-blue')).toBe(true);
+    // Mono Check
+    const monoWhiteTest: any = pipe.transform('{2/W}', 'cost');
+    expect(monoWhiteTest.includes('mono-white')).toBe(true);
+    const monoBlueTest: any = pipe.transform('{2/U}', 'cost');
+    expect(monoBlueTest.includes('mono-blue')).toBe(true);
+    const monoBlackTest: any = pipe.transform('{2/B}', 'cost');
+    expect(monoBlackTest.includes('mono-black')).toBe(true);
+    const monoRedTest: any = pipe.transform('{2/R}', 'cost');
+    expect(monoRedTest.includes('mono-red')).toBe(true);
+    const monoGreenTest: any = pipe.transform('{2/G}', 'cost');
+    expect(monoGreenTest.includes('mono-green')).toBe(true);
     // Empty Check
     const emptyTest: any = pipe.transform('', 'inline');
     expect(emptyTest).toBe('');

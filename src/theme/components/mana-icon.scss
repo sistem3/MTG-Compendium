@@ -115,6 +115,26 @@
       &.green-blue {
         background-position: -203px $mana-icon-small-dual-colour-row-depth;
       }
+      // Mono Colours
+      &.mono-white {
+        background-position: 0 $mana-icon-small-mono-colour-row-depth;
+      }
+
+      &.mono-blue {
+        background-position: -23px $mana-icon-small-mono-colour-row-depth;
+      }
+
+      &.mono-black {
+        background-position: -45px $mana-icon-small-mono-colour-row-depth;
+      }
+
+      &.mono-red {
+        background-position: -68px $mana-icon-small-mono-colour-row-depth;
+      }
+
+      &.mono-green {
+        background-position: -90px $mana-icon-small-mono-colour-row-depth;
+      }
       // Numbers (0-20)
       &.icon-0 {
         background-position: 0 $mana-icon-small-first-number-row-depth;
@@ -292,6 +312,26 @@
 
       &.green-blue {
         background-position: -133px $mana-icon-extra-small-dual-colour-row-depth;
+      }
+      // Mono Colours
+      &.mono-white {
+        background-position: 0 $mana-icon-extra-small-mono-colour-row-depth;
+      }
+
+      &.mono-blue {
+        background-position: -15px $mana-icon-extra-small-mono-colour-row-depth;
+      }
+
+      &.mono-black {
+        background-position: -29px $mana-icon-extra-small-mono-colour-row-depth;
+      }
+
+      &.mono-red {
+        background-position: -44px $mana-icon-extra-small-mono-colour-row-depth;
+      }
+
+      &.mono-green {
+        background-position: -59px $mana-icon-extra-small-mono-colour-row-depth;
       }
       // Numbers (0-20)
       &.icon-0 {

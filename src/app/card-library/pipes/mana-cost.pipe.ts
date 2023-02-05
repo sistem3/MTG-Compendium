@@ -77,6 +77,21 @@ export class ManaCostPipe implements PipeTransform {
       case 'G/B':
         iconTemplate = '<span class="mana-icon green-blue"></span></span>';
         break;
+      case '2/W':
+        iconTemplate = '<span class="mana-icon mono-white"></span></span>';
+        break;
+      case '2/U':
+        iconTemplate = '<span class="mana-icon mono-blue"></span></span>';
+        break;
+      case '2/B':
+        iconTemplate = '<span class="mana-icon mono-black"></span></span>';
+        break;
+      case '2/R':
+        iconTemplate = '<span class="mana-icon mono-red"></span></span>';
+        break;
+      case '2/G':
+        iconTemplate = '<span class="mana-icon mono-green"></span></span>';
+        break;
       default:
         iconTemplate = '<span class="mana-icon icon-' + item + '"></span></span>';
         break;
