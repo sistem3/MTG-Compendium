@@ -18,6 +18,7 @@ import { CardFullDetailsComponent } from './components/card-full-details/card-fu
 // Pipes
 import { ManaCostPipe } from './pipes/mana-cost.pipe';
 import { ColorIdentityPipe } from './pipes/color-identity.pipe';
+import { ManaInlinePipe } from './pipes/mana-inline.pipe';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ColorIdentityPipe } from './pipes/color-identity.pipe';
     CardPreviewComponent,
     CardFullDetailsComponent,
     ColorIdentityPipe,
-    ManaCostPipe
+    ManaCostPipe,
+    ManaInlinePipe
   ],
   imports: [
     CommonModule,

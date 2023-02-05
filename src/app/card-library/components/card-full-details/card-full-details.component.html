@@ -6,8 +6,10 @@
       <span [innerHTML]="cardDetails.manaCost | manaCost"></span>
     </p>
     <p>
-      <span *ngIf="cardDetails.originalText">{{cardDetails.originalText}}</span>
-      <span *ngIf="cardDetails.text && !cardDetails.originalText">{{cardDetails.text}}</span>
+      <span *ngIf="cardDetails.originalText && !cardDetails.text">{{cardDetails.originalText}}</span>
+      <span
+        *ngIf="cardDetails.text"
+        [innerHTML]="cardDetails.text | manaInline"></span>
       &nbsp;<em *ngIf="cardDetails.flavor">{{cardDetails.flavor}}</em>
     </p>
     <p>

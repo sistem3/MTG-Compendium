@@ -20,7 +20,7 @@
       <p class="type-details">{{cardDetails.type}}</p>
       <p>
         <small>
-          {{cardDetails.text}}
+          <span [innerHTML]="cardDetails.text | manaInline"></span>
           <em *ngIf="cardDetails.flavor"> - {{cardDetails.flavor}}</em>
         </small>
       </p>
