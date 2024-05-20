@@ -6,11 +6,12 @@
       paginatorPosition="both"
       [value]="cards"
       [paginator]="true"
-      [showJumpToPageDropdown]="true"
+      [showJumpToPageDropdown]="false"
       [first]="queryConfig.first"
       [rows]="queryConfig.pageSize"
       [totalRecords]="cardsTotalCount"
       [loading]="loadingCards"
+      [rowsPerPageOptions]="[20, 50, 100]"
       [lazy]="true"
       (onLazyLoad)="loadMoreCards($event)">
       <!-- DataView Header Starts -->
@@ -57,11 +58,13 @@
       </ng-template>
       <!-- DataView Header Ends -->
       <!-- DataView Grid Template Starts -->
-      <ng-template let-card pTemplate="gridItem">
-        <div class="col-12 md:col-6 lg:col-3">
-          <app-card-preview
-            [cardDetails]="card"
-            (displayFullDetails)="handleFullDetailsDisplay($event)"></app-card-preview>
+      <ng-template let-cards pTemplate="gridItem">
+        <div class="grid grid-nogutter">
+          <div class="col-12 md:col-6 lg:col-3" *ngFor="let card of cards">
+            <app-card-preview
+              [cardDetails]="card"
+              (displayFullDetails)="handleFullDetailsDisplay($event)"></app-card-preview>
+          </div>
         </div>
       </ng-template>
       <!-- DataView Grid Template Ends -->
