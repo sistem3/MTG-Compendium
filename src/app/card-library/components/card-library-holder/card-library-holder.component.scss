@@ -53,4 +53,14 @@ app-card-library-holder {
   .p-dataview .p-dataview-content {
     padding: 0;
   }
+
+  .p-dataview-header {
+    width: 100%;
+    background: rgba($theme-background, 0.9);
+    backdrop-filter: blur(3px);
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 9;
+  }
 }
