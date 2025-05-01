@@ -1,17 +1,40 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
+import { NgFor, NgIf } from '@angular/common';
+import { TitleCasePipe } from '@angular/common';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
+// Prime
+import { FormsModule } from '@angular/forms';
+import { DataView } from 'primeng/dataview';
+import { InputTextModule } from 'primeng/inputtext';
+import { DialogModule } from 'primeng/dialog';
+import { TooltipModule } from 'primeng/tooltip';
+// Components
+import { CardPreviewComponent } from '../card-preview/card-preview.component';
+import { CardFullDetailsComponent } from '../card-full-details/card-full-details.component';
 // Interfaces
 import { Card } from '../../interfaces/card.interface';
-import { ColourConfig } from '../../interfaces/colour-config.interface';
 import { QueryConfig } from '../../interfaces/query-config.interface';
+import { ColourConfig } from '../../interfaces/colour-config.interface';
 // Services
 import { CardService } from '../../services/card.service';
 import { QueryConfigService } from '../../services/query-config.service';
 
 @Component({
   selector: 'app-card-library-holder',
+  standalone: true,
+  imports: [
+    NgFor,
+    NgIf,
+    FormsModule,
+    InputTextModule,
+    DialogModule,
+    TooltipModule,
+    DataView,
+    TitleCasePipe,
+    CardPreviewComponent,
+    CardFullDetailsComponent],
   templateUrl: './card-library-holder.component.html'
 })
 export class CardLibraryHolderComponent implements OnInit {
