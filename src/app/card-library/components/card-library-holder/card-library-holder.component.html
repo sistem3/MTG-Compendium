@@ -15,7 +15,7 @@
       [lazy]="true"
       (onLazyLoad)="loadMoreCards($event)">
       <!-- DataView Header Starts -->
-      <ng-template pTemplate="header">
+      <ng-template #header pTemplate="header">
         <div class="flex flex-column md:flex-row md:justify-content-between">
           <!-- Search Starts -->
           <span class="p-input-icon-left mb-2 md:mb-0">
@@ -31,7 +31,7 @@
           <!-- Logo Starts -->
           <span class="mb-2 md:mb-0 logo-holder">
             <img
-              src="/assets/images/mtg-logo.png"
+              src="/images/mtg-logo.png"
               [alt]="mainTitle"
               [title]="mainTitle" />
           </span>
@@ -58,7 +58,7 @@
       </ng-template>
       <!-- DataView Header Ends -->
       <!-- DataView Grid Template Starts -->
-      <ng-template let-cards pTemplate="gridItem">
+      <ng-template #grid let-cards pTemplate="gridItem">
         <div class="grid grid-nogutter">
           <div class="col-12 md:col-6 lg:col-3" *ngFor="let card of cards">
             <app-card-preview
@@ -69,7 +69,7 @@
       </ng-template>
       <!-- DataView Grid Template Ends -->
       <!-- DataView Footer Starts -->
-      <ng-template pTemplate="footer">
+      <ng-template #footer pTemplate="footer">
         <footer class="text-center">
           <p>
             {{mainTitle}} - Powered by:
