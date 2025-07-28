@@ -1,86 +1,91 @@
 <!-- Main DataView Holder Starts -->
-<section *ngIf="cards">
-  <article class="card">
-    <p-dataView
-      layout="grid"
-      paginatorPosition="both"
-      [value]="cards"
-      [paginator]="true"
-      [showJumpToPageDropdown]="false"
-      [first]="queryConfig.first"
-      [rows]="queryConfig.pageSize"
-      [totalRecords]="cardsTotalCount"
-      [loading]="loadingCards"
-      [rowsPerPageOptions]="[20, 50, 100]"
-      [lazy]="true"
-      (onLazyLoad)="loadMoreCards($event)">
-      <!-- DataView Header Starts -->
-      <ng-template #header pTemplate="header">
-        <div class="flex flex-column md:flex-row md:justify-content-between">
-          <!-- Search Starts -->
-          <span class="p-input-icon-left mb-2 md:mb-0">
-            <i class="pi pi-search"></i>
-            <input
-              type="search"
-              [(ngModel)]="searchTerm"
-              pInputText
-              placeholder="Search by Name"
-              (input)="searchCards()">
-          </span>
-          <!-- Search Ends -->
-          <!-- Logo Starts -->
-          <span class="mb-2 md:mb-0 logo-holder">
-            <img
-              src="/images/mtg-logo.png"
-              [alt]="mainTitle"
-              [title]="mainTitle" />
-          </span>
-          <!-- Logo Ends -->
-          <!-- Mana Filter Starts -->
-          <span class="card-color-filter">
-            <span class="filter-label">Colour Filter:</span>
-            <span class="icon-list-holder">
-              <span
-                *ngFor="let colourType of manaColourConfig"
-                class="mana-icon-holder nav"
-                [class.is-active]="colourType.isActive"
-                tooltipPosition="bottom"
-                pTooltip="{{colourType.colour | titlecase}}{{colourType.isActive ? ': Active' : ': Inactive'}}">
+@if (cards) {
+  <section>
+    <article class="card">
+      <p-dataView
+        layout="grid"
+        paginatorPosition="both"
+        [value]="cards"
+        [paginator]="true"
+        [showJumpToPageDropdown]="false"
+        [first]="queryConfig.first"
+        [rows]="queryConfig.pageSize"
+        [totalRecords]="cardsTotalCount"
+        [loading]="loadingCards"
+        [rowsPerPageOptions]="[20, 50, 100]"
+        [lazy]="true"
+        (onLazyLoad)="loadMoreCards($event)">
+        <!-- DataView Header Starts -->
+        <ng-template #header pTemplate="header">
+          <div class="flex flex-column md:flex-row md:justify-content-between">
+            <!-- Search Starts -->
+            <span class="p-input-icon-left mb-2 md:mb-0">
+              <i class="pi pi-search"></i>
+              <input
+                type="search"
+                [(ngModel)]="searchTerm"
+                pInputText
+                placeholder="Search by Name"
+                (input)="searchCards()">
+            </span>
+            <!-- Search Ends -->
+            <!-- Logo Starts -->
+            <span class="mb-2 md:mb-0 logo-holder">
+              <img
+                src="/images/mtg-logo.png"
+                [alt]="mainTitle"
+                [title]="mainTitle" />
+            </span>
+            <!-- Logo Ends -->
+            <!-- Mana Filter Starts -->
+            <span class="card-color-filter">
+              <span class="filter-label">Colour Filter:</span>
+              <span class="icon-list-holder">
+                @for (colourType of manaColourConfig; track colourType) {
                   <span
-                    class="mana-icon {{colourType.colour}}"
-                    [title]="colourType.colour"
-                    (click)="updateManaColourFilter(colourType)"></span>
+                    class="mana-icon-holder nav"
+                    [class.is-active]="colourType.isActive"
+                    tooltipPosition="bottom"
+                    pTooltip="{{colourType.colour | titlecase}}{{colourType.isActive ? ': Active' : ': Inactive'}}">
+                      <span
+                        class="mana-icon {{colourType.colour}}"
+                        [title]="colourType.colour"
+                        (click)="updateManaColourFilter(colourType)"></span>
+                  </span>
+                }
               </span>
             </span>
-          </span>
-          <!-- Mana Filter Ends -->
-        </div>
-      </ng-template>
-      <!-- DataView Header Ends -->
-      <!-- DataView Grid Template Starts -->
-      <ng-template #grid let-cards pTemplate="gridItem">
-        <div class="grid grid-nogutter">
-          <div class="col-12 md:col-6 lg:col-3" *ngFor="let card of cards">
-            <app-card-preview
-              [cardDetails]="card"
-              (displayFullDetails)="handleFullDetailsDisplay($event)"></app-card-preview>
+            <!-- Mana Filter Ends -->
           </div>
-        </div>
-      </ng-template>
-      <!-- DataView Grid Template Ends -->
-      <!-- DataView Footer Starts -->
-      <ng-template #footer pTemplate="footer">
-        <footer class="text-center">
-          <p>
-            {{mainTitle}} - Powered by:
-            <a href="https://docs.magicthegathering.io/" target="_blank">MTG API</a>
-          </p>
-        </footer>
-      </ng-template>
-      <!-- DataView Footer Ends -->
-    </p-dataView>
-  </article>
-</section>
+        </ng-template>
+        <!-- DataView Header Ends -->
+        <!-- DataView Grid Template Starts -->
+        <ng-template #grid let-cards pTemplate="gridItem">
+          <div class="grid grid-nogutter">
+            @for (card of cards; track card) {
+              <div class="col-12 md:col-6 lg:col-3">
+                <app-card-preview
+                  [cardDetails]="card"
+                  (displayFullDetails)="handleFullDetailsDisplay($event)"></app-card-preview>
+              </div>
+            }
+          </div>
+        </ng-template>
+        <!-- DataView Grid Template Ends -->
+        <!-- DataView Footer Starts -->
+        <ng-template #footer pTemplate="footer">
+          <footer class="text-center">
+            <p>
+              {{mainTitle}} - Powered by:
+              <a href="https://docs.magicthegathering.io/" target="_blank">MTG API</a>
+            </p>
+          </footer>
+        </ng-template>
+        <!-- DataView Footer Ends -->
+      </p-dataView>
+    </article>
+  </section>
+}
 <!-- Main DataView Holder Starts -->
 <!-- Full Card Details Modal Starts -->
 <p-dialog
@@ -90,8 +95,10 @@
   [style]="{width: '60vw'}"
   [dismissableMask]="true"
   [showHeader]="false">
-  <section *ngIf="tempFullCardDetails">
-    <app-card-full-details [cardDetails]="tempFullCardDetails"></app-card-full-details>
-  </section>
+  @if (tempFullCardDetails) {
+    <section>
+      <app-card-full-details [cardDetails]="tempFullCardDetails"></app-card-full-details>
+    </section>
+  }
 </p-dialog>
 <!-- Full Card Details Modal Ends -->

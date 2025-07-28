@@ -1,5 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { NgFor, NgIf } from '@angular/common';
+import { Component, Input } from '@angular/core';
 // Interfaces
 import { Card } from '../../interfaces/card.interface';
 // Services
@@ -10,17 +9,13 @@ import { ManaCostPipe } from '../../pipes/mana-cost.pipe';
 
 @Component({
   selector: 'app-card-full-details',
-  standalone: true,
-  imports: [NgFor, NgIf, ColorIdentityPipe, ManaCostPipe],
+  imports: [ColorIdentityPipe, ManaCostPipe],
   templateUrl: './card-full-details.component.html'
 })
-export class CardFullDetailsComponent implements OnInit {
+export class CardFullDetailsComponent {
 
   @Input() cardDetails: Card = this.cardService.getBlankCard();
 
   constructor(private cardService: CardService) { }
-
-  ngOnInit(): void {
-  }
 
 }

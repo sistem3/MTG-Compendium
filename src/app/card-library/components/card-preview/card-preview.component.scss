@@ -15,7 +15,7 @@ app-card-preview {
     width: $card-width;
     height: $card-height;
     border-radius: $card-border-radius;
-    overflow: scroll;
+    overflow: auto;
     box-sizing: border-box;
     border: 1px solid $light-grey;
     position: absolute;
