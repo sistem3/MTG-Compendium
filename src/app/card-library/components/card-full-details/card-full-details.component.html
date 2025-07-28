@@ -1,76 +1,94 @@
-<section *ngIf="cardDetails" class="grid">
-  <article class="col-8">
-    <h1 class="text-2xl">{{cardDetails.name}}</h1>
-    <p *ngIf="cardDetails.manaCost">
-      <span class="cost-label"><strong>Cost:&nbsp;</strong></span>
-      <span [innerHTML]="cardDetails.manaCost | manaCost:'cost'"></span>
-    </p>
-    <p>
-      <span *ngIf="cardDetails.originalText && !cardDetails.text">{{cardDetails.originalText}}</span>
-      <span
-        *ngIf="cardDetails.text"
-        [innerHTML]="cardDetails.text | manaCost:'inline'"></span>
-      &nbsp;<em *ngIf="cardDetails.flavor">{{cardDetails.flavor}}</em>
-    </p>
-    <p>
-      <strong>Types:</strong>
-      <span *ngFor="let type of cardDetails.types; let i = index;">
-        {{type}}<span *ngIf="i !== (cardDetails.types.length - 1)">,&nbsp;</span>
-      </span>
-    </p>
-    <p *ngIf="cardDetails.subtypes">
-      <strong>Sub Types:</strong>
-      <span *ngFor="let subType of cardDetails.subtypes; let i = index;">
-        {{subType}}<span *ngIf="i !== (cardDetails.subtypes.length - 1)">,&nbsp;</span>
-      </span>
-    </p>
-    <p *ngIf="cardDetails.colorIdentity">
-      <span class="cost-label"><strong>Colour Identity:&nbsp;</strong></span>
-      <span
-        *ngFor="let colourIdentity of cardDetails.colorIdentity"
-        [innerHTML]="colourIdentity | colorIdentity"></span>
-    </p>
-    <p *ngIf="cardDetails.types.includes('Creature')">
-        <span class="power-toughness-holder">
-          <span title="Power">
-            <i class="material-symbols-outlined">swords</i>
-            <span class="details">&nbsp;{{cardDetails.power}}</span>
+@if (cardDetails) {
+  <section class="grid">
+    <article class="col-8">
+      <h1 class="text-2xl">{{cardDetails.name}}</h1>
+      @if (cardDetails.manaCost) {
+        <p>
+          <span class="cost-label"><strong>Cost:&nbsp;</strong></span>
+          <span [innerHTML]="cardDetails.manaCost | manaCost:'cost'"></span>
+        </p>
+      }
+      <p>
+        @if (cardDetails.originalText && !cardDetails.text) { <span>{{cardDetails.originalText}}</span> }
+        @if (cardDetails.text) {
+          <span [innerHTML]="cardDetails.text | manaCost:'inline'"></span>
+        }
+        @if (cardDetails.flavor) { <em>&nbsp;{{cardDetails.flavor}}</em> }
+      </p>
+      <p>
+        <strong>Types:</strong>
+        @for (type of cardDetails.types; track type; let i = $index) {
+          <span>
+            {{type}} @if (i !== (cardDetails.types.length - 1)) { <span>,&nbsp;</span> }
           </span>
-          <span>&nbsp;|&nbsp;</span>
-          <span title="Toughness">
-            <i class="material-symbols-outlined">shield</i>
-            <span class="details">&nbsp;{{cardDetails.toughness}}</span>
+        }
+      </p>
+      @if (cardDetails.subtypes) {
+        <p>
+          <strong>Sub Types:</strong>
+          @for (subType of cardDetails.subtypes; track subType; let i = $index) {
+            <span>
+              {{subType}} @if (i !== (cardDetails.subtypes.length - 1)) { <span>,&nbsp;</span> }
+            </span>
+          }
+        </p>
+      }
+      @if (cardDetails.colorIdentity) {
+        <p>
+          <span class="cost-label"><strong>Colour Identity:&nbsp;</strong></span>
+          @for (colourIdentity of cardDetails.colorIdentity; track colourIdentity) {
+            <span [innerHTML]="colourIdentity | colorIdentity"></span>
+          }
+        </p>
+      }
+      @if (cardDetails.types.includes('Creature')) {
+        <p>
+          <span class="power-toughness-holder">
+            <span title="Power">
+              <i class="material-symbols-outlined">swords</i>
+              <span class="details">&nbsp;{{cardDetails.power}}</span>
+            </span>
+            <span>&nbsp;|&nbsp;</span>
+            <span title="Toughness">
+              <i class="material-symbols-outlined">shield</i>
+              <span class="details">&nbsp;{{cardDetails.toughness}}</span>
+            </span>
           </span>
+        </p>
+      }
+    </article>
+    <article class="col-4">
+      @if (cardDetails.imageUrl) {
+        <span class="card-preview">
+          <img
+            [src]="cardDetails.imageUrl"
+            [alt]="cardDetails.name"
+            [title]="cardDetails.name" />
         </span>
-    </p>
-  </article>
-  <article class="col-4">
-    <span *ngIf="cardDetails.imageUrl" class="card-preview">
-      <img
-        [src]="cardDetails.imageUrl"
-        [alt]="cardDetails.name"
-        [title]="cardDetails.name" />
-    </span>
-    <div *ngIf="!cardDetails.imageUrl" class="card-placeholder">
-      <span>Missing Card Image</span>
-      <img
-        src="https://upload.wikimedia.org/wikipedia/en/a/aa/Magic_the_gathering-card_back.jpg"
-        alt="MTG Blank Card" />
-    </div>
-  </article>
-  <article class="col-6">
-    <p><strong>Artist:</strong> {{cardDetails.artist}}</p>
-    <p>
-      <strong>Printings:</strong>
-      <span *ngFor="let printing of cardDetails.printings; let i = index;">
-        {{printing}}<span *ngIf="i !== (cardDetails.printings.length - 1)">,&nbsp;</span>
-      </span>
-    </p>
-    <p><strong>Layout:</strong> {{cardDetails.layout}}</p>
-  </article>
-  <article class="col-6">
-    <p><strong>Card Number:</strong> {{cardDetails.number}}</p>
-    <p><strong>Set Name:</strong> {{cardDetails.setName}}</p>
-    <p><strong>Rarity:</strong> {{cardDetails.rarity}}</p>
-  </article>
-</section>
+      }
+      @if (!cardDetails.imageUrl) {
+        <div class="card-placeholder">
+          <span>Missing Card Image</span>
+          <img
+            src="https://upload.wikimedia.org/wikipedia/en/a/aa/Magic_the_gathering-card_back.jpg"
+            alt="MTG Blank Card" />
+        </div>
+      }
+    </article>
+    <article class="col-6">
+      <p><strong>Artist:</strong> {{cardDetails.artist}}</p>
+      <p>
+        <strong>Printings:&nbsp;</strong>
+        @for (printing of cardDetails.printings; track printing; let i = $index) {
+          <span>{{printing}} @if (i !== (cardDetails.printings.length - 1)) {<span>,&nbsp;</span>}</span>
+        }
+      </p>
+      <p><strong>Layout:</strong> {{cardDetails.layout}}</p>
+    </article>
+    <article class="col-6">
+      <p><strong>Card Number:</strong> {{cardDetails.number}}</p>
+      <p><strong>Set Name:</strong> {{cardDetails.setName}}</p>
+      <p><strong>Rarity:</strong> {{cardDetails.rarity}}</p>
+    </article>
+  </section>
+}
