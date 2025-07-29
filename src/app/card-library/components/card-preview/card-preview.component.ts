@@ -8,7 +8,8 @@ import { ManaCostPipe } from '../../pipes/mana-cost.pipe';
 @Component({
   selector: 'app-card-preview',
   imports: [ManaCostPipe],
-  templateUrl: './card-preview.component.html'
+  templateUrl: './card-preview.component.html',
+  styleUrl: './card-preview.component.css'
 })
 export class CardPreviewComponent {
 

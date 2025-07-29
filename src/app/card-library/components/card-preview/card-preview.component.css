@@ -1,0 +1,61 @@
+.card {
+  padding: 1.2rem;
+  box-shadow: 0 2px 1px -1px rgba(var(--main-blackrgb), 0.2),
+  0 1px 1px 0 rgba(var(--main-blackrgb), 0.14),
+  0 1px 3px 0 rgba(var(--main-blackrgb), 0.12);
+  border-radius: 4px;
+}
+
+.card:hover .card-details, .card-details.no-card-image {
+  top: 0;
+}
+
+.card-details {
+  width: var(--card-width);
+  height: var(--card-height);
+  border-radius: var(--card-border-radius);
+  overflow: auto;
+  box-sizing: border-box;
+  border: 1px solid var(--light-grey);
+  position: absolute;
+  top: var(--card-height);
+  left: 0;
+  background: rgba(var(--main-blackrgb), 0.7);
+  backdrop-filter: blur(3px);
+  padding: 14px;
+  cursor: pointer;
+  user-select: none;
+  transition: top 0.1s ease-in;
+
+  h3, p {
+    margin-top: 0;
+    margin-bottom: 5px;
+  }
+
+  small {
+    font-size: var(--card-details-font-size);
+    line-height: var(--card-details-line-height);
+  }
+
+  .cost-label {
+    position: relative;
+    top: -7px;
+  }
+
+  .mana-details {
+    margin-bottom: 0;
+  }
+
+  .type-details {
+    margin-bottom: 20px;
+  }
+}
+
+.product-grid-item-content {
+  position: relative;
+  overflow: hidden;
+}
+
+.p-dataview .p-dataview-content {
+  padding: 0;
+}

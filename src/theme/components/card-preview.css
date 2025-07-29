@@ -1,9 +1,9 @@
 .card-preview {
-  width: $card-width;
-  height: $card-height;
-  border-radius: $card-border-radius;
+  width: var(--card-width);
+  height: var(--card-height);
+  border-radius: var(--card-border-radius);
   overflow: hidden;
-  border: 1px solid $light-grey;
+  border: 1px solid var(--light-grey);
   display: flex;
   cursor: pointer;
   user-select: none;
