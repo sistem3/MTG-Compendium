@@ -17,18 +17,7 @@
         (onLazyLoad)="loadMoreCards($event)">
         <!-- DataView Header Starts -->
         <ng-template #header pTemplate="header">
-          <div class="flex flex-column md:flex-row md:justify-content-between">
-            <!-- Search Starts -->
-            <span class="p-input-icon-left mb-2 md:mb-0">
-              <i class="pi pi-search"></i>
-              <input
-                type="search"
-                [(ngModel)]="searchTerm"
-                pInputText
-                placeholder="Search by Name"
-                (input)="searchCards()">
-            </span>
-            <!-- Search Ends -->
+          <div class="flex flex-column md:flex-row">
             <!-- Logo Starts -->
             <span class="mb-2 md:mb-0 logo-holder">
               <img
@@ -37,8 +26,20 @@
                 [title]="mainTitle" />
             </span>
             <!-- Logo Ends -->
+            <!-- Search Starts -->
+            <span class="p-input-icon-left mb-2 md:mb-0 align-content-center">
+              <i class="pi pi-search"></i>
+              <input
+                type="search"
+                [(ngModel)]="searchTerm"
+                pInputText
+                placeholder="Search by name"
+                name="Search by name"
+                (input)="searchCards()">
+            </span>
+            <!-- Search Ends -->
             <!-- Mana Filter Starts -->
-            <span class="card-color-filter">
+            <span class="card-color-filter ml-2">
               <span class="filter-label">Colour Filter:</span>
               <span class="icon-list-holder">
                 @for (colourType of manaColourConfig; track colourType) {
