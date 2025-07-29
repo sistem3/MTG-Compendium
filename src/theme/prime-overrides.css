@@ -26,4 +26,15 @@
     left: 0;
     z-index: 9;
   }
+
+  .p-input-icon-left {
+    i {
+      position: relative;
+      left: 30px;
+    }
+
+    input {
+      padding-left: 35px;
+    }
+  }
 }
