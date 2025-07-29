@@ -1,11 +1,11 @@
 .card-placeholder {
-  width: $card-width;
-  height: $card-height;
-  border-radius: $card-border-radius;
+  width: var(--card-width);
+  height: var(--card-height);
+  border-radius: var(--card-border-radius);
   overflow: hidden;
   position: relative;
-  border: 1px solid $light-grey;
-  background: $card-background;
+  border: 1px solid var(--light-grey);
+  background: var(--card-background);
   display: flex;
   padding: 2rem;
   padding-top: 120px;

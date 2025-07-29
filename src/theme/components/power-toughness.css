@@ -1,14 +1,14 @@
 .power-toughness-holder {
   padding: 10px;
   margin-top: 10px;
-  border: 1px solid $main-white;
-  border-radius: $card-border-radius;
-  font-size: $card-details-power-toughness-font-size;
+  border: 1px solid var(--main-white);
+  border-radius: var(--card-border-radius);
+  font-size: var(--card-details-power-toughness-font-size);
   display: inline-block;
 
   .material-symbols-outlined, .details {
     display: inline-block;
-    font-size: $card-details-power-toughness-font-size;
+    font-size: var(--card-details-power-toughness-font-size);
   }
 
   .material-symbols-outlined {

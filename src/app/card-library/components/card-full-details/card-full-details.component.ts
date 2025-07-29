@@ -10,7 +10,8 @@ import { ManaCostPipe } from '../../pipes/mana-cost.pipe';
 @Component({
   selector: 'app-card-full-details',
   imports: [ColorIdentityPipe, ManaCostPipe],
-  templateUrl: './card-full-details.component.html'
+  templateUrl: './card-full-details.component.html',
+  styleUrl: './card-full-details.component.css'
 })
 export class CardFullDetailsComponent {
 
