@@ -1,6 +1,7 @@
 @import url('./theme/variables.css');
 @import url('./theme/global.css');
 @import url('./theme/typography.css');
+@import url('./theme/prime-overrides.css');
 /* Components */
 @import url('./theme/components/card-preview.css');
 @import url('./theme/components/card-placeholder.css');
