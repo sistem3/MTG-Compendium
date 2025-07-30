@@ -19,12 +19,11 @@ export class QueryConfigService {
 
   getBlankQuery(): QueryConfig {
     return {
-      name: '',
-      pageSize: 20,
-      page: 1,
-      colorIdentity: '',
-      first: 0,
-      gameFormat: 'Commander',
+      include_variations: false,
+      unique: 'card',
+      order: 'released',
+      q: '',
+      page: 1
     }
   }
 }

@@ -41,17 +41,27 @@ export class CardLibraryHolderComponent implements OnInit {
   cards: Array<Card> = [];
   cardsTotalCount: number = 0;
   searchTerm: string = '';
+  colourQueryConfig: string = '';
   queryConfig: QueryConfig = this.queryConfigService.getBlankQuery();
   availableGameFormats: Array<string> = this.queryConfigService.getFormatOptions();
   manaColourConfig: Array<ColourConfig> = this.cardService.getManaColourFilterConfig();
   searchDebounce: Subject<any> = new Subject();
   showCardDetails: boolean = false;
   tempFullCardDetails: any;
+  paginationStart: number = 0;
+  paginationPageSize: number = 175;
 
   constructor(private cardService: CardService,
               private queryConfigService: QueryConfigService) { }
 
   ngOnInit(): void {
+    this.colourQueryConfig = ' c:';
+    this.manaColourConfig.forEach(config => {
+      if (config.isActive) {
+        this.colourQueryConfig = this.colourQueryConfig + config.colourIdentity.toLowerCase();
+      }
+    });
+    this.queryConfig.q = this.colourQueryConfig;
     this.setupSearch();
     this.getCards(this.queryConfig);
   }
@@ -61,8 +71,8 @@ export class CardLibraryHolderComponent implements OnInit {
       .pipe(debounceTime(500))
       .subscribe(() => {
         this.queryConfig.page = 1;
-        this.queryConfig.first = 0;
-        this.queryConfig.name = this.searchTerm;
+        this.paginationStart = 0;
+        this.queryConfig.q = this.searchTerm + this.colourQueryConfig;
         this.getCards(this.queryConfig);
       });
   }
@@ -73,19 +83,18 @@ export class CardLibraryHolderComponent implements OnInit {
 
   getCards(queryConfig: QueryConfig) {
     this.loadingCards = true;
-    this.cardService.getCards(queryConfig).subscribe((data: HttpResponse<any>) => {
-      this.cards = data.body.cards;
-      const responseTotalCount = data.headers.get('total-count');
-      this.cardsTotalCount = parseFloat(responseTotalCount ? responseTotalCount : '0');
+    this.cardService.getCards(queryConfig).subscribe((response: any) => {
+      this.cards = response.data;
+      this.cardsTotalCount = response.total_cards;
       this.loadingCards = false;
     });
   }
 
   loadMoreCards(event: any) {
-    const pageCheck =  (event.first / this.queryConfig.pageSize) + 1;
+    const pageCheck = (event.first / this.paginationPageSize) + 1;
     if (pageCheck > 1 || (this.queryConfig.page > pageCheck)) {
       this.queryConfig.page = pageCheck;
-      this.queryConfig.first = event.first;
+      this.paginationStart = event.first;
       this.getCards(this.queryConfig);
     }
   }
@@ -96,12 +105,13 @@ export class CardLibraryHolderComponent implements OnInit {
     this.manaColourConfig.forEach((config, index) => {
       if (config.isActive) {
         updatedFilters = updatedFilters +
-          config.colourIdentity + (index === this.manaColourConfig.length -1 ? '' : '|');
+          config.colourIdentity.toLowerCase() + (index === this.manaColourConfig.length -1 ? '' : ',');
       }
     });
-    this.queryConfig.colors = updatedFilters;
+    this.colourQueryConfig = ' c:' + updatedFilters;
+    this.queryConfig.q = this.searchTerm + this.colourQueryConfig;
     this.queryConfig.page = 1;
-    this.queryConfig.first = 0;
+    this.paginationStart = 0;
     this.getCards(this.queryConfig);
   }
 
