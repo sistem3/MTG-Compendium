@@ -11,13 +11,13 @@ import { ColourConfig } from '../interfaces/colour-config.interface';
 })
 export class CardService {
 
-  baseUrl: string = 'https://api.magicthegathering.io/v1/';
+  baseUrl: string = 'https://api.scryfall.com/';
 
   constructor(private http: HttpClient) { }
 
   getCards(queryConfig: any): Observable<any> {
     const queryParams = new HttpParams({fromObject: queryConfig}).toString();
-    return this.http.get(this.baseUrl + 'cards?' + queryParams, {observe: 'response'});
+    return this.http.get(this.baseUrl + 'cards/search?' + queryParams);
   }
 
   getManaColourFilterConfig(): Array<ColourConfig> {
@@ -28,22 +28,22 @@ export class CardService {
         colourIdentity: 'W'
       },
       {
-        isActive: true,
+        isActive: false,
         colour: 'blue',
         colourIdentity: 'U'
       },
       {
-        isActive: true,
+        isActive: false,
         colour: 'red',
         colourIdentity: 'R'
       },
       {
-        isActive: true,
+        isActive: false,
         colour: 'green',
         colourIdentity: 'G'
       },
       {
-        isActive: true,
+        isActive: false,
         colour: 'black',
         colourIdentity: 'B'
       }
@@ -54,31 +54,21 @@ export class CardService {
     return {
       id: '',
       name: '',
-      manaCost: '',
-      cmc: 0,
-      colors: [],
-      colorIdentity: [],
-      type: '',
-      types: [],
-      subtypes: [],
-      flavor: '',
-      rarity: '',
-      set: '',
-      setName: '',
-      text: '',
       artist: '',
-      number: '',
+      legalities: {},
       power: '',
       toughness: '',
       layout: '',
-      multiverseid: '',
-      imageUrl: '',
-      variations: [],
-      foreignNames: [],
-      printings: [],
-      originalText: '',
-      originalType: '',
-      legalities: []
+      cmc: 0,
+      rarity: '',
+      colors: [],
+      color_identity: [],
+      image_uris: {},
+      mana_cost: '',
+      oracle_text: '',
+      type_line: '',
+      flavor_text: '',
+      set_name: '',
     };
   }
 }

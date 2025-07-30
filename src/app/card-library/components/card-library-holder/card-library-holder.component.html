@@ -8,11 +8,10 @@
         [value]="cards"
         [paginator]="true"
         [showJumpToPageDropdown]="false"
-        [first]="queryConfig.first"
-        [rows]="queryConfig.pageSize"
+        [first]="paginationStart"
+        [rows]="paginationPageSize"
         [totalRecords]="cardsTotalCount"
         [loading]="loadingCards"
-        [rowsPerPageOptions]="[20, 50, 100]"
         [lazy]="true"
         (onLazyLoad)="loadMoreCards($event)">
         <!-- DataView Header Starts -->
@@ -78,7 +77,7 @@
           <footer class="text-center">
             <p>
               {{mainTitle}} - Powered by:
-              <a href="https://docs.magicthegathering.io/" target="_blank">MTG API</a>
+              <a href="https://scryfall.com/" target="_blank">Scryfall API</a>
             </p>
           </footer>
         </ng-template>

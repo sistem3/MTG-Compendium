@@ -2,46 +2,33 @@
   <section class="grid">
     <article class="col-8">
       <h1 class="text-2xl">{{cardDetails.name}}</h1>
-      @if (cardDetails.manaCost) {
+      @if (cardDetails.mana_cost) {
         <p>
           <span class="cost-label"><strong>Cost:&nbsp;</strong></span>
-          <span [innerHTML]="cardDetails.manaCost | manaCost:'cost'"></span>
+          <span [innerHTML]="cardDetails.mana_cost | manaCost:'cost'"></span>
         </p>
       }
       <p>
-        @if (cardDetails.originalText && !cardDetails.text) { <span>{{cardDetails.originalText}}</span> }
-        @if (cardDetails.text) {
-          <span [innerHTML]="cardDetails.text | manaCost:'inline'"></span>
+        @if (cardDetails.oracle_text) {
+          <span [innerHTML]="cardDetails.oracle_text | manaCost:'inline'"></span>
         }
-        @if (cardDetails.flavor) { <em>&nbsp;{{cardDetails.flavor}}</em> }
+        @if (cardDetails.flavor_text) { <em>&nbsp;{{cardDetails.flavor_text}}</em> }
       </p>
       <p>
-        <strong>Types:</strong>
-        @for (type of cardDetails.types; track type; let i = $index) {
-          <span>
-            {{type}} @if (i !== (cardDetails.types.length - 1)) { <span>,&nbsp;</span> }
-          </span>
+        <strong>Type:&nbsp;</strong>
+        @if (cardDetails.type_line) {
+          <span>{{cardDetails.type_line}}</span>
         }
       </p>
-      @if (cardDetails.subtypes) {
-        <p>
-          <strong>Sub Types:</strong>
-          @for (subType of cardDetails.subtypes; track subType; let i = $index) {
-            <span>
-              {{subType}} @if (i !== (cardDetails.subtypes.length - 1)) { <span>,&nbsp;</span> }
-            </span>
-          }
-        </p>
-      }
-      @if (cardDetails.colorIdentity) {
+      @if (cardDetails.color_identity) {
         <p>
           <span class="cost-label"><strong>Colour Identity:&nbsp;</strong></span>
-          @for (colourIdentity of cardDetails.colorIdentity; track colourIdentity) {
+          @for (colourIdentity of cardDetails.color_identity; track colourIdentity) {
             <span [innerHTML]="colourIdentity | colorIdentity"></span>
           }
         </p>
       }
-      @if (cardDetails.types.includes('Creature')) {
+      @if (cardDetails.type_line.includes('Creature') && cardDetails.power && cardDetails.toughness) {
         <p>
           <span class="power-toughness-holder">
             <span title="Power">
@@ -58,15 +45,15 @@
       }
     </article>
     <article class="col-4">
-      @if (cardDetails.imageUrl) {
+      @if (cardDetails.image_uris) {
         <span class="card-preview">
           <img
-            [src]="cardDetails.imageUrl"
+            [src]="cardDetails.image_uris.large"
             [alt]="cardDetails.name"
             [title]="cardDetails.name" />
         </span>
       }
-      @if (!cardDetails.imageUrl) {
+      @if (!cardDetails.image_uris) {
         <div class="card-placeholder">
           <span>Missing Card Image</span>
           <img
@@ -77,17 +64,10 @@
     </article>
     <article class="col-6">
       <p><strong>Artist:</strong> {{cardDetails.artist}}</p>
-      <p>
-        <strong>Printings:&nbsp;</strong>
-        @for (printing of cardDetails.printings; track printing; let i = $index) {
-          <span>{{printing}} @if (i !== (cardDetails.printings.length - 1)) {<span>,&nbsp;</span>}</span>
-        }
-      </p>
       <p><strong>Layout:</strong> {{cardDetails.layout}}</p>
     </article>
     <article class="col-6">
-      <p><strong>Card Number:</strong> {{cardDetails.number}}</p>
-      <p><strong>Set Name:</strong> {{cardDetails.setName}}</p>
+      <p><strong>Set Name:</strong> {{cardDetails.set_name}}</p>
       <p><strong>Rarity:</strong> {{cardDetails.rarity}}</p>
     </article>
   </section>

@@ -52,14 +52,14 @@ describe('CardLibraryHolderComponent', () => {
     spyOn(component, 'getCards');
     component.queryConfig = {...queryConfigService.getBlankQuery()};
     component.queryConfig.page = 3;
-    component.queryConfig.first = 40;
+    component.paginationStart = 525;
     component.searchTerm = 'Crab';
     component.setupSearch();
     component.searchCards();
     tick(500);
     expect(component.queryConfig.page).toBe(1);
-    expect(component.queryConfig.first).toBe(0);
-    expect(component.queryConfig.name).toBe('Crab');
+    expect(component.paginationStart).toBe(0);
+    expect(component.queryConfig.q.includes('Crab')).toBe(true);
     expect(component.getCards).toHaveBeenCalled();
   }));
 
@@ -98,28 +98,28 @@ describe('CardLibraryHolderComponent', () => {
     };
     component.queryConfig = {...queryConfigService.getBlankQuery()};
     component.queryConfig.page = 3;
-    component.queryConfig.first = 40;
+    component.paginationStart = 525;
     component.updateManaColourFilter(testColour);
     expect(testColour.isActive).toBe(false);
     expect(component.queryConfig.page).toBe(1);
-    expect(component.queryConfig.first).toBe(0);
+    expect(component.paginationStart).toBe(0);
     expect(component.getCards).toHaveBeenCalled();
   });
 
   it('should set queryConfig.page, queryConfig.first and call getCards when calling loadMoreCards function (if event.first greater than queryConfig.pageSize + 1)', () => {
     spyOn(component, 'getCards');
-    const testEvent = {first: 20};
+    const testEvent = {first: 175};
     component.queryConfig = {...queryConfigService.getBlankQuery()};
     component.loadMoreCards(testEvent);
     expect(component.queryConfig.page).toBe(2);
-    expect(component.queryConfig.first).toBe(20);
+    expect(component.paginationStart).toBe(175);
     expect(component.getCards).toHaveBeenCalled();
     const testPageEvent = {first: 0};
     component.queryConfig.page = 3;
-    component.queryConfig.first = 40;
+    component.paginationStart = 525;
     component.loadMoreCards(testPageEvent);
     expect(component.queryConfig.page).toBe(1);
-    expect(component.queryConfig.first).toBe(0);
+    expect(component.paginationStart).toBe(0);
     expect(component.getCards).toHaveBeenCalled();
   });
 
