@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { Component, input, output, ChangeDetectionStrategy } from '@angular/core';
 // Interfaces
 import { Card } from '../../interfaces/card.interface';
 // Services
@@ -9,6 +9,7 @@ import { ManaCostPipe } from '../../pipes/mana-cost.pipe';
   selector: 'app-card-preview',
   imports: [ManaCostPipe],
   templateUrl: './card-preview.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './card-preview.component.css'
 })
 export class CardPreviewComponent {

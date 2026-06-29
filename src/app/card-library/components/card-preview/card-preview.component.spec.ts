@@ -4,7 +4,7 @@ import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { CardService } from '../../services/card.service';
 
 import { CardPreviewComponent } from './card-preview.component';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 
 describe('CardPreviewComponent', () => {
   let component: CardPreviewComponent;
@@ -14,7 +14,7 @@ describe('CardPreviewComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
     imports: [CardPreviewComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+    providers: [provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
 })
     .compileComponents();
 

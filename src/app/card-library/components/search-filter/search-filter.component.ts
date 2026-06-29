@@ -1,4 +1,4 @@
-import { Component, input, output, OnInit } from '@angular/core';
+import { Component, input, output, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
@@ -13,6 +13,7 @@ import { FilterConfig } from '../../interfaces/filter-config.interface';
   selector: 'app-search-filter',
   imports: [FormsModule, InputTextModule, SelectModule, TooltipModule],
   templateUrl: './search-filter.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './search-filter.component.css'
 })
 export class SearchFilterComponent implements OnInit {

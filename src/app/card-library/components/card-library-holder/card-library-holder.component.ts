@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { TitleCasePipe, NgClass } from '@angular/common';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
@@ -36,6 +36,7 @@ import { QueryConfigService } from '../../services/query-config.service';
     NgClass
 ],
   templateUrl: './card-library-holder.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './card-library-holder.component.css'
 })
 export class CardLibraryHolderComponent implements OnInit {
