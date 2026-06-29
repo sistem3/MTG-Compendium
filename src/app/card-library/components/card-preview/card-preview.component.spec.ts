@@ -21,6 +21,8 @@ describe('CardPreviewComponent', () => {
     fixture = TestBed.createComponent(CardPreviewComponent);
     component = fixture.componentInstance;
     cardService = TestBed.inject(CardService);
+    const testCard = cardService.getBlankCard();
+    fixture.componentRef.setInput('cardDetails', testCard);
     fixture.detectChanges();
   });
 

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 // Interfaces
 import { Card } from '../../interfaces/card.interface';
 // Services
@@ -15,7 +15,7 @@ import { ManaCostPipe } from '../../pipes/mana-cost.pipe';
 })
 export class CardFullDetailsComponent {
 
-  @Input() cardDetails: Card = this.cardService.getBlankCard();
+  cardDetails = input.required<Card>();
 
   constructor(private cardService: CardService) { }
 
