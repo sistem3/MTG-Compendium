@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { HttpResponse, HttpHeaders, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { HttpResponse, HttpHeaders, provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { of } from 'rxjs';
 
 import { CardService } from '../../services/card.service';
@@ -17,7 +17,7 @@ describe('CardLibraryHolderComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
     imports: [CardLibraryHolderComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+    providers: [provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
 })
     .compileComponents();
 
@@ -34,10 +34,20 @@ describe('CardLibraryHolderComponent', () => {
 
   it('should call setupSearch and getInitialCards when initialising', () => {
     spyOn(component, 'setupSearch');
+    spyOn(component, 'setupFilters');
     spyOn(component, 'getCards');
     component.ngOnInit();
+    expect(component.setupFilters).toHaveBeenCalled();
     expect(component.setupSearch).toHaveBeenCalled();
     expect(component.getCards).toHaveBeenCalled();
+  });
+
+  it('should set colourQueryConfig, queryConfig.q and filterConfig when calling setupFilters function', () => {
+    const testColourQuery = 'c:w';
+    component.setupFilters();
+    expect(component.colourQueryConfig).toBe(testColourQuery);
+    expect(component.queryConfig.q).toBe(testColourQuery);
+    expect(component.filterConfig.length).toBe(2);
   });
 
   it('should call searchDebounce.next when calling searchCards function', () => {
@@ -129,5 +139,13 @@ describe('CardLibraryHolderComponent', () => {
     component.handleFullDetailsDisplay(testCard);
     expect(component.tempFullCardDetails).toEqual(testCard);
     expect(component.showCardDetails).toBe(true);
+  });
+
+  it('should toggle showMoreFilters when calling toggleShowMoreFilters function', () => {
+    component.showMoreFilters = false;
+    component.toggleShowMoreFilters();
+    expect(component.showMoreFilters).toBe(true);
+    component.toggleShowMoreFilters();
+    expect(component.showMoreFilters).toBe(false);
   });
 });

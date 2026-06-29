@@ -1,0 +1,34 @@
+<section class="search-filter-holder">
+  <p>{{filterConfig().label}}:</p>
+  <span class="input-holder">
+    @switch (filterConfig().input_type) {
+      @case ('text') {
+        <span class="p-input-icon-left align-content-center">
+          <i class="pi pi-search"></i>
+          <input
+            pInputText
+            type="search"
+            [(ngModel)]="selectedValue"
+            [placeholder]="'Search by ' + filterConfig().label"
+            [name]="'Search by ' + filterConfig().label" 
+            (input)="handleSearch()">
+        </span>
+      }
+      @case ('select') {
+        <p-select 
+          [options]="filterConfig().options" 
+          [(ngModel)]="selectedValue" 
+          [showClear]="true" 
+          [placeholder]="'Select a ' + filterConfig().label" 
+          (onChange)="updateFilter()" />
+      }
+    }
+    <button 
+      class="remove-filter-btn" 
+      title="Remove filter" 
+      pTooltip="Remove filter" 
+      (click)="removeFilter(filterConfig())">
+      <i class="pi pi-times"></i>
+    </button>
+  </span>
+</section>

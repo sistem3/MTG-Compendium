@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input, ChangeDetectionStrategy } from '@angular/core';
 // Interfaces
 import { Card } from '../../interfaces/card.interface';
 // Services
@@ -11,11 +11,12 @@ import { ManaCostPipe } from '../../pipes/mana-cost.pipe';
   selector: 'app-card-full-details',
   imports: [ColorIdentityPipe, ManaCostPipe],
   templateUrl: './card-full-details.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './card-full-details.component.css'
 })
 export class CardFullDetailsComponent {
 
-  @Input() cardDetails: Card = this.cardService.getBlankCard();
+  cardDetails = input.required<Card>();
 
   constructor(private cardService: CardService) { }
 

@@ -56,13 +56,37 @@
               </span>
             </span>
             <!-- Mana Filter Ends -->
+            <!-- Filter CTA Holder Starts -->
+            <div class="filter-icon-holder" [title]="(showMoreFilters ? 'Hide' : 'Show') + ' More Search Filters'" (click)="toggleShowMoreFilters()">
+              <div class="filter-icon-background"></div>
+              <div class="filter-icon">
+                <i class="pi" [ngClass]="{'pi-filter-fill': showMoreFilters, 'pi-filter': !showMoreFilters}"></i>
+              </div>
+            </div>
+            <!-- Filter CTA Holder Ends -->
+            <!-- Results Details Display Starts -->
+            <span class="response-details-display">
+              Showing {{cards.length}} of {{cardsTotalCount}} results
+            </span>
+            <!-- Results Details Display Ends -->
           </div>
+          @if (showMoreFilters) {
+            <div class="flex flex-column md:flex-row">
+              <div class="filters-holder">
+                @for (filter of filterConfig; track filter.label) {
+                  <app-search-filter 
+                    [filterConfig]="filter"
+                    (updatedFilterValue)="handleFilterUpdate($event)"></app-search-filter>
+                }
+              </div>
+            </div>
+          }
         </ng-template>
         <!-- DataView Header Ends -->
         <!-- DataView Grid Template Starts -->
         <ng-template #grid let-cards pTemplate="gridItem">
           <div class="grid grid-nogutter">
-            @for (card of cards; track card) {
+            @for (card of cards; track card.id) {
               <div class="col-12 md:col-6 lg:col-3">
                 <app-card-preview
                   [cardDetails]="card"
@@ -89,7 +113,7 @@
 <!-- Main DataView Holder Starts -->
 <!-- Full Card Details Modal Starts -->
 <p-dialog
-  position="top"
+  position="center"
   [(visible)]="showCardDetails"
   [modal]="true"
   [style]="{width: '60vw'}"

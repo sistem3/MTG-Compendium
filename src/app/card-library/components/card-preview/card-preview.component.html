@@ -1,50 +1,50 @@
 <div class="product-grid-item card">
-  <div class="product-grid-item-content" (click)="emitFullDetails(cardDetails)">
-     @if (cardDetails.image_uris) {
+  <div class="product-grid-item-content" (click)="emitFullDetails(cardDetails())">
+     @if (cardDetails().image_uris) {
       <div class="card-preview">
         <img
-          [src]="cardDetails.image_uris.normal"
-          [alt]="cardDetails.name"
-          [title]="cardDetails.name" />
+          [src]="cardDetails().image_uris.normal"
+          [alt]="cardDetails().name"
+          [title]="cardDetails().name" />
       </div>
     }
-    @if (!cardDetails.image_uris) {
+    @if (!cardDetails().image_uris) {
       <div class="card-placeholder">
         <img
           src="https://upload.wikimedia.org/wikipedia/en/a/aa/Magic_the_gathering-card_back.jpg"
           alt="MTG Blank Card" />
       </div>
     }
-    <section class="card-details" [class.no-card-image]="!cardDetails.image_uris">
-      <h3 class="text-lg">{{cardDetails.name}}</h3>
-      @if (cardDetails.mana_cost) {
+    <section class="card-details" [class.no-card-image]="!cardDetails().image_uris">
+      <h3 class="text-lg">{{cardDetails().name}}</h3>
+      @if (cardDetails().mana_cost) {
         <p class="mana-details">
           <span class="cost-label">Cost:&nbsp;</span>
-          <span [innerHTML]="cardDetails.mana_cost | manaCost: 'cost'"></span>
+          <span [innerHTML]="cardDetails().mana_cost | manaCost: 'cost'"></span>
         </p>
       }
-      <p class="type-details">{{cardDetails.type_line}}</p>
+      <p class="type-details">{{cardDetails().type_line}}</p>
       <p>
-        @if (cardDetails.oracle_text) {
+        @if (cardDetails().oracle_text) {
           <small>
-            <span [innerHTML]="cardDetails.oracle_text | manaCost:'inline'"></span>
-            @if (cardDetails.flavor_text) {
-              <em> - {{cardDetails.flavor_text}}</em>
+            <span [innerHTML]="cardDetails().oracle_text | manaCost:'inline'"></span>
+            @if (cardDetails().flavor_text) {
+              <em> - {{cardDetails().flavor_text}}</em>
             }
           </small>
         }
       </p>
-      @if (cardDetails.type_line.includes('Creature') && cardDetails.power && cardDetails.toughness) {
+      @if (cardDetails().type_line.includes('Creature') && cardDetails().power && cardDetails().toughness) {
         <p>
           <span class="power-toughness-holder">
             <span title="Power">
               <i class="material-symbols-outlined">swords</i>
-              <span class="details">&nbsp;{{cardDetails.power}}</span>
+              <span class="details">&nbsp;{{cardDetails().power}}</span>
             </span>
             <span>&nbsp;|&nbsp;</span>
             <span title="Toughness">
               <i class="material-symbols-outlined">shield</i>
-              <span class="details">&nbsp;{{cardDetails.toughness}}</span>
+              <span class="details">&nbsp;{{cardDetails().toughness}}</span>
             </span>
           </span>
         </p>

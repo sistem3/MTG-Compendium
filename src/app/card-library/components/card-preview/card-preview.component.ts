@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, input, output, ChangeDetectionStrategy } from '@angular/core';
 // Interfaces
 import { Card } from '../../interfaces/card.interface';
 // Services
@@ -9,12 +9,13 @@ import { ManaCostPipe } from '../../pipes/mana-cost.pipe';
   selector: 'app-card-preview',
   imports: [ManaCostPipe],
   templateUrl: './card-preview.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './card-preview.component.css'
 })
 export class CardPreviewComponent {
 
-  @Input() cardDetails: Card = this.cardService.getBlankCard();
-  @Output() displayFullDetails: EventEmitter<Card> = new EventEmitter<Card>();
+  cardDetails = input.required<Card>();
+  displayFullDetails = output<Card>();
 
   constructor(private cardService: CardService) { }
 
