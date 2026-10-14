@@ -1,9 +1,10 @@
 import { Routes } from '@angular/router';
+import { CardLibraryHolderComponent } from './card-library/components/card-library-holder/card-library-holder.component';
 
 export const mainRoutes: Routes = [
   {
-    path: 'card-library',
-    loadChildren: () => import('./card-library/card-library.module').then(m => m.CardLibraryModule)
+    path: 'card-library/all',
+    component: CardLibraryHolderComponent
   },
   {
     path: '',

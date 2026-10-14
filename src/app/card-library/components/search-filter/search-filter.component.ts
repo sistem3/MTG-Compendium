@@ -6,14 +6,16 @@ import { debounceTime } from 'rxjs/operators';
 import { InputTextModule } from 'primeng/inputtext';
 import { SelectModule } from 'primeng/select';
 import { TooltipModule } from 'primeng/tooltip';
+import { Search } from '@primeicons/angular/search';
+import { Times } from '@primeicons/angular/times';
 // Interfaces
 import { FilterConfig } from '../../interfaces/filter-config.interface';
 
 @Component({
   selector: 'app-search-filter',
-  imports: [FormsModule, InputTextModule, SelectModule, TooltipModule],
+  imports: [FormsModule, InputTextModule, SelectModule, TooltipModule, Search, Times],
   templateUrl: './search-filter.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './search-filter.component.css'
 })
 export class SearchFilterComponent implements OnInit {

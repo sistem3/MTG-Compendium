@@ -1,8 +1,6 @@
 import { Component, input, ChangeDetectionStrategy } from '@angular/core';
 // Interfaces
 import { Card } from '../../interfaces/card.interface';
-// Services
-import { CardService } from '../../services/card.service';
 // Pipes
 import { ColorIdentityPipe } from '../../pipes/color-identity.pipe';
 import { ManaCostPipe } from '../../pipes/mana-cost.pipe';
@@ -11,13 +9,11 @@ import { ManaCostPipe } from '../../pipes/mana-cost.pipe';
   selector: 'app-card-full-details',
   imports: [ColorIdentityPipe, ManaCostPipe],
   templateUrl: './card-full-details.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './card-full-details.component.css'
 })
 export class CardFullDetailsComponent {
 
   cardDetails = input.required<Card>();
-
-  constructor(private cardService: CardService) { }
 
 }

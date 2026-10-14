@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { vi } from 'vitest';
 
 import { CardService } from '../../services/card.service';
 
@@ -13,9 +14,9 @@ describe('CardPreviewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-    imports: [CardPreviewComponent],
-    providers: [provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
-})
+      imports: [CardPreviewComponent],
+      providers: [provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
+    })
     .compileComponents();
 
     fixture = TestBed.createComponent(CardPreviewComponent);
@@ -32,8 +33,8 @@ describe('CardPreviewComponent', () => {
 
   it('should call displayFullDetails.emit (with card param details) ' +
     'when caliing emitFullDetails function', () => {
-    const testCard = {...cardService.getBlankCard()};
-    spyOn(component.displayFullDetails, 'emit');
+    const testCard = { ...cardService.getBlankCard() };
+    vi.spyOn(component.displayFullDetails, 'emit').mockReturnValue(undefined);
     component.emitFullDetails(testCard);
     expect(component.displayFullDetails.emit).toHaveBeenCalled();
     expect(component.displayFullDetails.emit).toHaveBeenCalledWith(testCard);
