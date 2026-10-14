@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -11,9 +11,10 @@ import { ColourConfig } from '../interfaces/colour-config.interface';
 })
 export class CardService {
 
+  private http = inject(HttpClient);
   baseUrl: string = 'https://api.scryfall.com/';
 
-  constructor(private http: HttpClient) { }
+  constructor() { }
 
   getCards(queryConfig: any): Observable<any> {
     const queryParams = new HttpParams({fromObject: queryConfig}).toString();

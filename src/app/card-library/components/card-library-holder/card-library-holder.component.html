@@ -2,7 +2,7 @@
 @if (cards) {
   <section>
     <article class="card">
-      <p-dataView
+      <p-dataview
         layout="grid"
         paginatorPosition="both"
         [value]="cards"
@@ -11,7 +11,7 @@
         [first]="paginationStart"
         [rows]="paginationPageSize"
         [totalRecords]="cardsTotalCount"
-        [loading]="loadingCards"
+        [loading]="loadingCards()"
         [lazy]="true"
         (onLazyLoad)="loadMoreCards($event)">
         <!-- DataView Header Starts -->
@@ -27,7 +27,7 @@
             <!-- Logo Ends -->
             <!-- Search Starts -->
             <span class="p-input-icon-left mb-2 md:mb-0 align-content-center">
-              <i class="pi pi-search"></i>
+              <svg data-p-icon="search" size="20"></svg>
               <input
                 type="search"
                 [(ngModel)]="searchTerm"
@@ -60,7 +60,11 @@
             <div class="filter-icon-holder" [title]="(showMoreFilters ? 'Hide' : 'Show') + ' More Search Filters'" (click)="toggleShowMoreFilters()">
               <div class="filter-icon-background"></div>
               <div class="filter-icon">
-                <i class="pi" [ngClass]="{'pi-filter-fill': showMoreFilters, 'pi-filter': !showMoreFilters}"></i>
+                @if (showMoreFilters) {
+                  <svg data-p-icon="filter-fill" size="20"></svg>
+                } @else {
+                  <svg data-p-icon="filter" size="20"></svg>
+                }
               </div>
             </div>
             <!-- Filter CTA Holder Ends -->
@@ -106,7 +110,7 @@
           </footer>
         </ng-template>
         <!-- DataView Footer Ends -->
-      </p-dataView>
+      </p-dataview>
     </article>
   </section>
 }

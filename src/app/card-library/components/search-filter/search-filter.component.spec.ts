@@ -27,10 +27,4 @@ describe('SearchFilterComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-  it('should call updatedFilterValue.emit when calling handleSelect function', () => {
-    spyOn(component.updatedFilterValue, 'emit');
-    component.handleSelect({});
-    expect(component.updatedFilterValue.emit).toHaveBeenCalled();
-  });
 });

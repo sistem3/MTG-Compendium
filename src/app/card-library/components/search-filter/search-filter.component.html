@@ -4,7 +4,7 @@
     @switch (filterConfig().input_type) {
       @case ('text') {
         <span class="p-input-icon-left align-content-center">
-          <i class="pi pi-search"></i>
+          <svg data-p-icon="search" size="20"></svg>
           <input
             pInputText
             type="search"
@@ -28,7 +28,7 @@
       title="Remove filter" 
       pTooltip="Remove filter" 
       (click)="removeFilter(filterConfig())">
-      <i class="pi pi-times"></i>
+      <svg data-p-icon="times" size="20"></svg>
     </button>
   </span>
 </section>

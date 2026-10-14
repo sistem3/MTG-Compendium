@@ -1,13 +1,16 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { TitleCasePipe, NgClass } from '@angular/common';
+import { Component, OnInit, ChangeDetectionStrategy, inject, signal } from '@angular/core';
+import { TitleCasePipe } from '@angular/common';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 // Prime
 import { FormsModule } from '@angular/forms';
-import { DataView } from 'primeng/dataview';
+import { DataViewModule } from 'primeng/dataview';
 import { InputTextModule } from 'primeng/inputtext';
 import { DialogModule } from 'primeng/dialog';
 import { TooltipModule } from 'primeng/tooltip';
+import { Search } from '@primeicons/angular/search';
+import { Filter } from '@primeicons/angular/filter';
+import { FilterFill } from '@primeicons/angular/filter-fill';
 // Components
 import { CardPreviewComponent } from '../card-preview/card-preview.component';
 import { CardFullDetailsComponent } from '../card-full-details/card-full-details.component';
@@ -28,21 +31,26 @@ import { QueryConfigService } from '../../services/query-config.service';
     InputTextModule,
     DialogModule,
     TooltipModule,
-    DataView,
+    DataViewModule,
     TitleCasePipe,
     CardPreviewComponent,
     CardFullDetailsComponent,
     SearchFilterComponent,
-    NgClass
+    Search,
+    Filter,
+    FilterFill
 ],
   templateUrl: './card-library-holder.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './card-library-holder.component.css'
 })
 export class CardLibraryHolderComponent implements OnInit {
 
+  private cardService = inject(CardService);
+  private queryConfigService = inject(QueryConfigService);
+
   mainTitle: string = 'Magic The Gathering: Compendium';
-  loadingCards: boolean = false;
+  loadingCards = signal<boolean>(false);
   cards: Array<Card> = [];
   cardsTotalCount: number = 0;
   searchTerm: string = '';
@@ -57,9 +65,6 @@ export class CardLibraryHolderComponent implements OnInit {
   showMoreFilters: boolean = true;
   availableFilterConfigs: Array<FilterConfig> = this.queryConfigService.getAvailableFilterConfigs();
   filterConfig: Array<FilterConfig> = [];
-
-  constructor(private cardService: CardService,
-              private queryConfigService: QueryConfigService) { }
 
   ngOnInit(): void {
     this.setupFilters();
@@ -98,19 +103,18 @@ export class CardLibraryHolderComponent implements OnInit {
   }
 
   getCards(queryConfig: QueryConfig) {
-    if (!this.loadingCards) {
-      this.loadingCards = true;
+    if (!this.loadingCards()) {
+      this.loadingCards.set(true);
       this.cardService.getCards(queryConfig).subscribe({
         next: (response: any) => {
           this.cards = response.data;
           this.cardsTotalCount = response.total_cards;
-          this.loadingCards = false;
+          this.loadingCards.set(false);
         },
         error: (error: any) => {
-          console.log(error);
           this.cards = [];
           this.cardsTotalCount = 0;
-          this.loadingCards = false;
+          this.loadingCards.set(false);
         }
       });
     }
